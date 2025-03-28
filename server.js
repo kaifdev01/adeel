@@ -3,11 +3,12 @@ const app = express();
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 const cors = require("cors");
-app.use(cors());
+
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 
-const PORT = process.env.PORT || 8080;
+app.use(express.json());
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("Hi, I am login");
@@ -19,8 +20,8 @@ app.post("/api/contact", (req, res) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
+      user: "adeelimran467@gmail.com",
+      pass: "ykpnlzncdtkwuvci",
     },
   });
 
@@ -51,3 +52,4 @@ app.post("/api/contact", (req, res) => {
 // app.listen(PORT, () => {
 //   console.log(`Listening on port ${PORT}`);
 // });
+module.exports = app;
